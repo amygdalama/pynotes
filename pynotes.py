@@ -1,5 +1,7 @@
 import argparse
+import glob
 import os
+import re
 import subprocess
 
 
@@ -18,7 +20,24 @@ def _get_filename(title):
         raise ValueError("title must be more than one character")
 
 
+def _extract_title(filepath):
+    match = re.match(r'notes/([a-zA-Z0-9_-]+).txt', filepath)
+    if match:
+        return match.group(1)
+
+
+def _prompt_title(command):
+    existing_notes = glob.glob("notes/*.txt")
+    print "Current notes:"
+    for note in existing_notes:
+        print _extract_title(note)
+    print "Enter the title of the note you wish to %s:" % command
+    return raw_input("> ")
+
+
 def add(title=None):
+    if not title:
+        title = _prompt_title('add')
     filename = _get_filename(title)
     if os.path.isfile(filename):
         print "%s already exists." % title
