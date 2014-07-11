@@ -21,7 +21,6 @@ class DeleteTest(unittest.TestCase):
 
     def setUp(self):
         self.title = 'test'
-        self.content = 'whatever'
         pynotes.add(self.title)
         pynotes.delete(self.title)
 
