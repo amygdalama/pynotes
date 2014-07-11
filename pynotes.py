@@ -14,6 +14,11 @@ def add_note(title, content):
         f.write(content)
 
 
+def read_note(title):
+    content = open('notes/%s.txt' % title, 'r').read()
+    return content
+
+
 def add(title):
     user_input = _get_next_line()
     content = '\n'.join([line for line in user_input])
@@ -21,7 +26,7 @@ def add(title):
 
 
 def read(title):
-    pass
+    print read_note(title)
 
 
 def update(title):
