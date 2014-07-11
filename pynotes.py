@@ -1,4 +1,5 @@
 import argparse
+import os
 
 
 def _get_next_line():
@@ -19,6 +20,10 @@ def read_note(title):
     return content
 
 
+def delete_note(title):
+    os.remove('notes/%s.txt' % title)
+
+
 def add(title):
     user_input = _get_next_line()
     content = '\n'.join([line for line in user_input])
@@ -34,7 +39,7 @@ def update(title):
 
 
 def delete(title):
-    pass
+    delete_note(title)
 
 
 if __name__ == '__main__':
