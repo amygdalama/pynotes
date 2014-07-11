@@ -20,6 +20,14 @@ def _get_filename(title):
         raise ValueError("title must be more than one character")
 
 
+def _title(title):
+    if re.match(r'[a-zA-Z0-9]+\Z', title):
+        return title
+    else:
+        raise ValueError("titles must be alphanumberic plus \
+                dashes and underscores")
+
+
 def _extract_title(filepath):
     match = re.match(r'notes/([a-zA-Z0-9_-]+).txt', filepath)
     if match:
@@ -78,6 +86,7 @@ if __name__ == '__main__':
     }
     parser = argparse.ArgumentParser()
     parser.add_argument('command', choices=commands)
-    parser.add_argument('title', nargs='?')
+    parser.add_argument('title', nargs='?', type=_title)
     args = parser.parse_args()
+    print args.title
     commands[args.command](args.title)
