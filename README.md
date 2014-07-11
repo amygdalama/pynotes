@@ -33,7 +33,7 @@ Display notes and choose one to read:
     first line
     second line
 
-## Update notes
+## Edit notes
 
 TODO
 

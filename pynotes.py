@@ -53,9 +53,9 @@ def read(title=None):
     print content
 
 
-def update(title=None):
+def edit(title=None):
     if not title:
-        title = _prompt_title('update')
+        title = _prompt_title('edit')
     filename = _get_filename(title)
     if os.path.isfile(filename):
         subprocess.call(['open', filename])
@@ -73,7 +73,7 @@ if __name__ == '__main__':
     commands = {
         'add' : add,
         'read' : read,
-        'update' : update,
+        'edit' : edit,
         'delete' : delete
     }
     parser = argparse.ArgumentParser()
