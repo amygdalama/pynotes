@@ -1,5 +1,6 @@
 import argparse
 import os
+import subprocess
 
 
 def _get_next_line():
@@ -10,9 +11,8 @@ def _get_next_line():
         yield line
 
 
-def add_note(title, content):
-    with open('notes/%s.txt' % title, 'w') as f:
-        f.write(content)
+def _get_filename(title):
+    return 'notes/%s.txt' % title
 
 
 def read_note(title):
@@ -25,9 +25,12 @@ def delete_note(title):
 
 
 def add(title):
-    user_input = _get_next_line()
-    content = '\n'.join([line for line in user_input])
-    add_note(title, content)
+    filename = _get_filename(title)
+    if os.path.isfile(filename):
+        print "%s already exists." % title
+    else:
+        subprocess.call(['touch', filename])
+        subprocess.call(['open', filename])
 
 
 def read(title):
