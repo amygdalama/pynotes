@@ -9,10 +9,15 @@ def _get_next_line():
         yield line
 
 
+def add_note(title, content):
+    with open('notes/%s.txt' % title, 'w') as f:
+        f.write(content)
+
+
 def add(title):
-    lines = _get_next_line()
-    for line in lines:
-        print line
+    user_input = _get_next_line()
+    content = '\n'.join([line for line in user_input])
+    add_note(title, content)
 
 
 def read(title):
