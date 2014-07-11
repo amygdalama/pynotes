@@ -8,12 +8,7 @@ class AddTest(unittest.TestCase):
 
     def setUp(self):
         self.title = 'test'
-        self.content = """
-            test content
-            hello
-            hello
-            test"""
-        pynotes.add_note(self.title, self.content)
+        pynotes.add(self.title)
 
     def tearDown(self):
         os.remove('notes/%s.txt' % self.title)
@@ -21,18 +16,14 @@ class AddTest(unittest.TestCase):
     def test_note_exists(self):
         self.assertTrue(os.path.isfile('notes/%s.txt' % self.title))
 
-    def test_note_content(self):
-        saved_content = open('notes/%s.txt' % self.title).read()
-        self.assertEqual(saved_content, self.content)
-
 
 class DeleteTest(unittest.TestCase):
 
     def setUp(self):
         self.title = 'test'
         self.content = 'whatever'
-        pynotes.add_note(self.title, self.content)
-        pynotes.delete_note(self.title)
+        pynotes.add(self.title)
+        pynotes.delete(self.title)
 
     def test_note_doesnt_exist(self):
         self.assertFalse(os.path.exists('notes/%s.txt' % self.title))
