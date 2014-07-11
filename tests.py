@@ -15,6 +15,9 @@ class AddTest(unittest.TestCase):
             test"""
         pynotes.add_note(self.title, self.content)
 
+    def tearDown(self):
+        os.remove('notes/%s.txt' % self.title)
+
     def test_added_note_exists(self):
         self.assertTrue(os.path.isfile('notes/%s.txt' % self.title))
 
