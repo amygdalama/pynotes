@@ -47,11 +47,15 @@ def add(title=None):
 
 
 def read(title=None):
+    if not title:
+        title = _prompt_title('read')
     content = open('notes/%s.txt' % title, 'r').read()
-    print read_note(title)
+    print content
 
 
 def update(title=None):
+    if not title:
+        title = _prompt_title('update')
     filename = _get_filename(title)
     if os.path.isfile(filename):
         subprocess.call(['open', filename])
@@ -60,6 +64,8 @@ def update(title=None):
 
 
 def delete(title=None):
+    if not title:
+        title = _prompt_title('delete')
     os.remove('notes/%s.txt' % title)
 
 
