@@ -2,7 +2,7 @@ A note-taking app.
 
 # Usage
 
-## Create notes
+## Add notes
 
     $ python pynotes.py add
     Enter the name of your note:

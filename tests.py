@@ -16,4 +16,12 @@ class AddTest(unittest.TestCase):
         pynotes.add_note(self.title, self.content)
 
     def test_added_note_exists(self):
-        self.assertTrue(os.isfile('notes/%s.txt' % self.title))
+        self.assertTrue(os.path.isfile('notes/%s.txt' % self.title))
+
+    def test_note_content(self):
+        saved_content = open('notes/%s.txt' % self.title).read()
+        self.assertEqual(saved_content, self.content)
+
+
+if __name__ == '__main__':
+    unittest.main()
