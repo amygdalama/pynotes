@@ -20,10 +20,6 @@ def read_note(title):
     return content
 
 
-def delete_note(title):
-    os.remove('notes/%s.txt' % title)
-
-
 def add(title):
     filename = _get_filename(title)
     if os.path.isfile(filename):
@@ -42,7 +38,7 @@ def update(title):
 
 
 def delete(title):
-    delete_note(title)
+    os.remove('notes/%s.txt' % title)
 
 
 if __name__ == '__main__':
