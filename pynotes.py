@@ -27,11 +27,14 @@ def add(title):
 def read(title):
     content = open('notes/%s.txt' % title, 'r').read()
     print read_note(title)
-    return content
 
 
 def update(title):
-    pass
+    filename = _get_filename(title)
+    if os.path.isfile(filename):
+        subprocess.call(['open', filename])
+    else:
+        print "%s doesn't exist." % title
 
 
 def delete(title):
