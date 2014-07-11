@@ -15,11 +15,6 @@ def _get_filename(title):
     return 'notes/%s.txt' % title
 
 
-def read_note(title):
-    content = open('notes/%s.txt' % title, 'r').read()
-    return content
-
-
 def add(title):
     filename = _get_filename(title)
     if os.path.isfile(filename):
@@ -30,7 +25,9 @@ def add(title):
 
 
 def read(title):
+    content = open('notes/%s.txt' % title, 'r').read()
     print read_note(title)
+    return content
 
 
 def update(title):
