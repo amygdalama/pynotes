@@ -12,10 +12,13 @@ def _get_next_line():
 
 
 def _get_filename(title):
-    return 'notes/%s.txt' % title
+    if title:
+        return 'notes/%s.txt' % title
+    else:
+        raise ValueError("title must be more than one character")
 
 
-def add(title):
+def add(title=None):
     filename = _get_filename(title)
     if os.path.isfile(filename):
         print "%s already exists." % title
@@ -24,12 +27,12 @@ def add(title):
         subprocess.call(['open', filename])
 
 
-def read(title):
+def read(title=None):
     content = open('notes/%s.txt' % title, 'r').read()
     print read_note(title)
 
 
-def update(title):
+def update(title=None):
     filename = _get_filename(title)
     if os.path.isfile(filename):
         subprocess.call(['open', filename])
@@ -37,7 +40,7 @@ def update(title):
         print "%s doesn't exist." % title
 
 
-def delete(title):
+def delete(title=None):
     os.remove('notes/%s.txt' % title)
 
 
@@ -50,6 +53,6 @@ if __name__ == '__main__':
     }
     parser = argparse.ArgumentParser()
     parser.add_argument('command', choices=commands)
-    parser.add_argument('title')
+    parser.add_argument('title', nargs='?')
     args = parser.parse_args()
     commands[args.command](args.title)
